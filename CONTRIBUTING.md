@@ -6,7 +6,7 @@ corrected yaw values and better sources.
 ## Report or add a game
 
 The easiest way is to open an
-[**Add or fix a game** issue](https://github.com/umut-hope/yawmatch/issues/new?template=add-game.yml).
+[**Add or fix a game** issue](https://github.com/umut-hope/Yaw-Match/issues/new?template=add-game.yml).
 Please include where the value comes from.
 
 ## Edit the data yourself

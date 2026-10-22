@@ -1,10 +1,10 @@
-# Sens Finder
+# Yaw-Match
 
 Convert mouse sensitivity between games and keep the same physical feel.
 
-**Live site:** https://umut-hope.github.io/yawmatch/
+**Live site:** https://umut-hope.github.io/Yaw-Match/
 
-Enter your sensitivity, DPI and game. Sens Finder shows the matching sensitivity in every
+Enter your sensitivity, DPI and game. Yaw-Match shows the matching sensitivity in every
 supported game, your cm/360 and eDPI, and a console/config line you can copy. Everything
 runs in your browser: no accounts, no tracking, no backend.
 
@@ -59,7 +59,7 @@ Requires Node.js 24.
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173/yawmatch/
+npm run dev       # http://localhost:5173/Yaw-Match/
 npm test          # unit tests and game data validation
 npm run check     # type checking
 npm run build     # production build in dist/

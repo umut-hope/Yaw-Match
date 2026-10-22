@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/yawmatch/',
+  base: '/Yaw-Match/',
   plugins: [svelte()],
   test: {
     include: ['src/**/*.test.ts', 'data/**/*.test.ts'],
