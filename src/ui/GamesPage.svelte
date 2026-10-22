@@ -2,6 +2,8 @@
   import type { Game } from '../../data/schema'
   import { games, trustLabels } from './games'
 
+  const ISSUE_URL = 'https://github.com/umut-hope/yawmatch/issues/new?template=add-game.yml'
+
   const fovTypeLabels: Record<NonNullable<Game['fov']>['type'], string> = {
     horizontal: 'Horizontal',
     vertical: 'Vertical',
@@ -123,5 +125,6 @@
 </div>
 
 <p class="muted small contribute">
-  Found a wrong value or have a better source? Open an issue on the project repository.
+  Found a wrong value or have a better source?
+  <a href={ISSUE_URL} target="_blank" rel="noopener noreferrer">Suggest a fix or a new game</a>.
 </p>
