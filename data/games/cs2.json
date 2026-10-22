@@ -7,6 +7,17 @@
   "ads": null,
   "configFiles": ["cs2_user_convars_0_slot0.vcfg"],
   "consoleCommand": "sensitivity {sens}",
-  "sources": [],
-  "verifiedBy": "unverified"
+  "sources": [
+    {
+      "url": "https://csdb.gg/command/m-yaw/",
+      "title": "CSDB: m_yaw",
+      "note": "CS2 console variable reference, default 0.022"
+    },
+    {
+      "url": "https://developer.valvesoftware.com/wiki/HL_cvars",
+      "title": "Valve Developer Community: HL cvars",
+      "note": "Engine lineage default m_yaw 0.022"
+    }
+  ],
+  "verifiedBy": "community"
 }
