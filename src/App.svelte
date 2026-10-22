@@ -1,7 +1,7 @@
 <script lang="ts">
   import Converter from './ui/Converter.svelte'
   import GamesPage from './ui/GamesPage.svelte'
-  import ThemeToggle from './ui/ThemeToggle.svelte'
+  import Promo from './ui/Promo.svelte'
 
   type Route = 'converter' | 'games'
 
@@ -22,20 +22,20 @@
   })
 
   $effect(() => {
-    document.title = route === 'games' ? 'Games database · Sens Finder' : 'Sens Finder'
+    document.title = route === 'games' ? 'Games · yawmatch' : 'yawmatch · mouse sensitivity converter'
   })
 </script>
 
-<header class="top">
+<header class="site-header">
   <a class="brand" href="#/">
-    <span class="logo" aria-hidden="true">◎</span>
-    <span>Sens Finder</span>
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-word">yawmatch</span>
   </a>
-  <nav aria-label="Main">
-    <a href="#/" aria-current={route === 'converter' ? 'page' : undefined}>Converter</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="#/" aria-current={route === 'converter' ? 'page' : undefined}>Convert</a>
     <a href="#/games" aria-current={route === 'games' ? 'page' : undefined}>Games</a>
   </nav>
-  <ThemeToggle />
+  <Promo />
 </header>
 
 <main>
@@ -46,9 +46,7 @@
   {/if}
 </main>
 
-<footer>
-  <p>
-    Not affiliated with any game publisher. Game names belong to their respective owners.
-    Results are a starting point; fine-tune in game.
-  </p>
+<footer class="site-footer">
+  <p>Nothing leaves your browser.</p>
+  <p>Not affiliated with any game publisher. Game names belong to their respective owners.</p>
 </footer>
