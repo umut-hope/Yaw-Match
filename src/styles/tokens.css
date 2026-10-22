@@ -1,0 +1,44 @@
+/*
+ * "Mousepad" design tokens, shared by yawmatch and aimtune.
+ *
+ * This file only defines variables: no element or class selectors, so another site
+ * can import it as-is. Fonts are loaded separately (Google Fonts):
+ *   Archivo 400/500/700/800, IBM Plex Mono 400/500/600
+ */
+
+:root {
+  /* Colour */
+  --color-bg: #15171c;
+  --color-surface: #22252c;
+  --color-surface-raised: #2a2e36;
+  --color-border: #3a3e48;
+  --color-text: #f1efe9;
+  --color-text-muted: #a3a6ae;
+  --color-accent: #f2c94c; /* tape-measure yellow */
+  --color-accent-hover: #ffe08a;
+  --color-on-accent: #15171c;
+  --color-tip-bg: #2a2620;
+  --color-tip-border: #5a4a1e;
+  --color-tip-text: #e9ddba;
+  --color-danger: #ff8a7a;
+
+  /* Type */
+  --font-ui: 'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-black: 800;
+
+  /* Shape */
+  --radius-control: 10px;
+  --radius-card: 14px;
+  --radius-panel: 18px;
+  --touch-target: 44px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-bar: 450ms;
+
+  color-scheme: dark;
+}
