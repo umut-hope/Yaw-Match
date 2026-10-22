@@ -1,0 +1,17 @@
+{
+  "id": "fortnite",
+  "name": "Fortnite",
+  "yaw": 0.005555,
+  "sensCurve": "linear",
+  "fov": null,
+  "ads": null,
+  "configFiles": [],
+  "consoleCommand": null,
+  "sources": [
+    { "url": "https://csdb.gg/sensitivity-converter/", "title": "CSDB sensitivity converter (yaw table)", "note": "Lists 0.005555" },
+    { "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games", "title": "Recharge: sensitivity converter for 23 FPS games", "note": "Lists 0.005555" },
+    { "url": "https://west-games.com/cm-per-360-calculator/", "title": "West Games: cm/360 calculator", "note": "Lists 0.005715, conflicts with the others" }
+  ],
+  "verifiedBy": "unverified",
+  "notes": "Percent-based slider: the value is the number shown in the menu (e.g. 7.0 for 7%). Sources disagree in the third significant digit."
+}

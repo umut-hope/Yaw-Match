@@ -1,0 +1,17 @@
+{
+  "id": "deadlock",
+  "name": "Deadlock",
+  "yaw": 0.044,
+  "sensCurve": "linear",
+  "fov": null,
+  "ads": null,
+  "configFiles": [],
+  "consoleCommand": null,
+  "sources": [
+    { "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games", "title": "Recharge: sensitivity converter for 23 FPS games", "note": "Lists 0.044 (2x CS2)" },
+    { "url": "https://community.skin.club/pro/tools/mouse-sensitivity-converter/cs2-to-deadlock", "title": "Skin.Club: CS2 to Deadlock converter", "note": "Uses 0.044 (CS2 sens / 2)" },
+    { "url": "https://csdb.gg/sensitivity-converter/", "title": "CSDB sensitivity converter (yaw table)", "note": "Lists 0.022, conflicts with the others" }
+  ],
+  "verifiedBy": "unverified",
+  "notes": "Sources disagree (0.044 vs 0.022). Needs an in-game 360 measurement."
+}
