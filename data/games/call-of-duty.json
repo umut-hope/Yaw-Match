@@ -1,0 +1,16 @@
+{
+  "id": "call-of-duty",
+  "name": "Call of Duty (MW III, Warzone, Black Ops 6)",
+  "yaw": 0.0066,
+  "sensCurve": "linear",
+  "fov": null,
+  "ads": null,
+  "configFiles": [],
+  "consoleCommand": null,
+  "sources": [
+    { "url": "https://csdb.gg/sensitivity-converter/", "title": "CSDB sensitivity converter (yaw table)", "note": "Lists 0.0066 for MW III, Warzone and Black Ops 6" },
+    { "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games", "title": "Recharge: sensitivity converter for 23 FPS games", "note": "Lists 0.0066 for MW III, Warzone and Black Ops 6" }
+  ],
+  "verifiedBy": "community",
+  "notes": "Hip-fire only. ADS feel also depends on the ADS multiplier, Legacy/Relative mode and the monitor distance coefficient."
+}

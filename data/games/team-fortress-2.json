@@ -1,0 +1,17 @@
+{
+  "id": "team-fortress-2",
+  "name": "Team Fortress 2",
+  "yaw": 0.022,
+  "sensCurve": "linear",
+  "fov": null,
+  "ads": null,
+  "configFiles": ["tf/cfg/config.cfg"],
+  "consoleCommand": "sensitivity {sens}",
+  "sources": [
+    { "url": "https://csdb.gg/sensitivity-converter/", "title": "CSDB sensitivity converter (yaw table)", "note": "Lists 0.022" },
+    { "url": "https://www.recharge.com/blog/en-gb/mouse-sensitivity-converter-calculator-for-23-fps-games", "title": "Recharge: sensitivity converter for 23 FPS games", "note": "Lists 0.022" },
+    { "url": "https://steamcommunity.com/app/440/discussions/0/648814841849902445", "title": "Steam Community: TF2 m_yaw discussion", "note": "Players cite m_yaw default 0.022" }
+  ],
+  "verifiedBy": "community",
+  "notes": "Assumes m_yaw is left at its default of 0.022."
+}
