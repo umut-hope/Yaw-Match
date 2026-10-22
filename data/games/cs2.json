@@ -17,6 +17,11 @@
       "url": "https://developer.valvesoftware.com/wiki/HL_cvars",
       "title": "Valve Developer Community: HL cvars",
       "note": "Engine lineage default m_yaw 0.022"
+    },
+    {
+      "url": "https://west-games.com/cm-per-360-calculator/",
+      "title": "West Games: cm/360 calculator",
+      "note": "Lists 0.0220"
     }
   ],
   "verifiedBy": "community"
