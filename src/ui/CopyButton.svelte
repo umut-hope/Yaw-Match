@@ -1,10 +1,13 @@
 <script lang="ts">
   interface Props {
     text: string
+    /** Visible label; defaults to "Copy". */
     label?: string
+    /** Show `text` itself on the button (e.g. a console line). */
+    showText?: boolean
   }
 
-  let { text, label = 'Copy' }: Props = $props()
+  let { text, label = 'Copy', showText = false }: Props = $props()
   let status = $state<'idle' | 'copied' | 'failed'>('idle')
   let timer: ReturnType<typeof setTimeout> | undefined
 
@@ -37,31 +40,20 @@
     clearTimeout(timer)
     timer = setTimeout(() => (status = 'idle'), 1500)
   }
+
+  const stateLabel = $derived(status === 'copied' ? 'Copied' : status === 'failed' ? 'Failed' : label)
 </script>
 
-<button type="button" class="copy" class:done={status === 'copied'} onclick={copy} aria-live="polite">
-  {status === 'copied' ? 'Copied' : status === 'failed' ? 'Failed' : label}
+<button
+  type="button"
+  class="copy"
+  class:copy-line={showText}
+  class:is-copied={status === 'copied'}
+  onclick={copy}
+  aria-label={showText ? `Copy: ${text}` : undefined}
+>
+  {#if showText}
+    <code class="copy-text">{text}</code>
+  {/if}
+  <span class="copy-state" aria-live="polite">{stateLabel}</span>
 </button>
-
-<style>
-  .copy {
-    flex: none;
-    min-width: 4.75rem;
-    padding: 0.35rem 0.7rem;
-    font: inherit;
-    font-size: 0.85rem;
-    color: var(--fg);
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  .copy:hover {
-    border-color: var(--accent);
-  }
-  .copy.done {
-    color: var(--accent-fg);
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-</style>
