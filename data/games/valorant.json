@@ -1,0 +1,12 @@
+{
+  "id": "valorant",
+  "name": "Valorant",
+  "yaw": 0.07,
+  "sensCurve": "linear",
+  "fov": { "default": 103, "type": "horizontal", "adjustable": false },
+  "ads": null,
+  "configFiles": [],
+  "consoleCommand": null,
+  "sources": [],
+  "verifiedBy": "unverified"
+}

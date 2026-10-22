@@ -1,0 +1,12 @@
+{
+  "id": "overwatch-2",
+  "name": "Overwatch 2",
+  "yaw": 0.0066,
+  "sensCurve": "linear",
+  "fov": { "default": 103, "type": "horizontal", "adjustable": true, "min": 80, "max": 103 },
+  "ads": null,
+  "configFiles": [],
+  "consoleCommand": null,
+  "sources": [],
+  "verifiedBy": "unverified"
+}
