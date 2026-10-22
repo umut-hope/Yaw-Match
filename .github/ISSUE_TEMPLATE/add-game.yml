@@ -1,0 +1,82 @@
+name: Add or fix a game
+description: Suggest a new game or correct a yaw value, config path or source.
+title: "[game] "
+labels: ["game data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Every value needs a source. If you are not sure, say so: unverified
+        data is fine, guessed data is not.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Request type
+      options:
+        - Add a new game
+        - Fix an existing game
+    validations:
+      required: true
+
+  - type: input
+    id: game
+    attributes:
+      label: Game name
+      placeholder: e.g. Counter-Strike 2
+    validations:
+      required: true
+
+  - type: input
+    id: yaw
+    attributes:
+      label: Yaw (degrees per count at sensitivity 1)
+      placeholder: e.g. 0.022
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Links to where the value comes from. Prefer official docs or your own measurement.
+      placeholder: |
+        https://...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: trust
+    attributes:
+      label: How sure is this value?
+      options:
+        - Official documentation
+        - I measured it in game
+        - Several sources agree
+        - Not sure / sources disagree
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurement
+    attributes:
+      label: Measurement method (if measured)
+      description: Sensitivity, DPI, how you counted one full 360° turn, how many times you repeated it.
+
+  - type: input
+    id: console
+    attributes:
+      label: Console command (optional)
+      placeholder: e.g. sensitivity {sens}
+
+  - type: input
+    id: config
+    attributes:
+      label: Config file location (optional)
+      placeholder: e.g. tf/cfg/config.cfg
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes (optional)
+      description: Slider quirks, non-linear sensitivity, settings that change the result.
