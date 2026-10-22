@@ -102,11 +102,129 @@ code {
   justify-content: space-between;
   padding: 1rem 0;
 }
+.top {
+  gap: 0.75rem;
+}
 .brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: 700;
+  color: var(--fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.top nav {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+.top nav a {
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.top nav a:hover {
+  color: var(--fg);
+}
+.top nav a[aria-current='page'] {
+  color: var(--fg);
+  background: var(--surface-2);
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Games database */
+.legend ul {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.legend .trust {
+  margin-left: 0;
+  flex: none;
+  min-width: 6.5rem;
+  text-align: center;
+}
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.game-list .card {
+  margin-bottom: 0;
+}
+.game-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.game-head h2 {
+  margin: 0;
+}
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+  margin: 0.9rem 0 0;
+}
+.facts .span {
+  grid-column: 1 / -1;
+}
+.facts dt {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.facts .path {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+}
+.game-note {
+  margin: 0.9rem 0 0;
+  padding: 0.5rem 0.7rem;
+  background: var(--surface-2);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.sources {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+}
+.sources summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 600;
+}
+.sources ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+}
+.sources li {
+  margin-bottom: 0.3rem;
+  overflow-wrap: anywhere;
+}
+.contribute {
+  text-align: center;
 }
 .logo {
   color: var(--accent);
@@ -325,6 +443,14 @@ footer {
 @media (max-width: 600px) {
   .card {
     padding: 1rem;
+  }
+  .top {
+    flex-wrap: wrap;
+  }
+  .top nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
   }
   .form {
     gap: 0.75rem;
