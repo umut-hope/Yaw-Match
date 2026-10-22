@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  LEGACY_STORAGE_KEY,
   STORAGE_KEY,
   formatNumber,
   fromQuery,
@@ -76,6 +77,31 @@ describe('profile storage', () => {
     const storage = memory()
     saveProfile(storage, defaults)
     expect(loadProfile(storage)).toEqual(defaults)
+  })
+
+  it('uses a namespaced key', () => {
+    expect(STORAGE_KEY).toBe('yawmatch:profile')
+  })
+
+  it('migrates a profile saved under the old key', () => {
+    const data = new Map<string, string>([[LEGACY_STORAGE_KEY, JSON.stringify(defaults)]])
+    const storage = {
+      getItem: (k: string) => data.get(k) ?? null,
+      setItem: (k: string, v: string) => void data.set(k, v),
+      removeItem: (k: string) => void data.delete(k),
+    }
+    expect(loadProfile(storage)).toEqual(defaults)
+    saveProfile(storage, { ...defaults, sens: '2' })
+    expect(data.has(LEGACY_STORAGE_KEY)).toBe(false)
+    expect(loadProfile(storage).sens).toBe('2')
+  })
+
+  it('prefers the new key over the old one', () => {
+    const data = new Map<string, string>([
+      [STORAGE_KEY, JSON.stringify({ sens: '3' })],
+      [LEGACY_STORAGE_KEY, JSON.stringify({ sens: '9' })],
+    ])
+    expect(loadProfile({ getItem: (k: string) => data.get(k) ?? null }).sens).toBe('3')
   })
 
   it('survives storage that throws', () => {

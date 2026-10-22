@@ -6,7 +6,10 @@ export interface Settings {
   dpi: string
 }
 
-export const STORAGE_KEY = 'sensfinder.profile.v1'
+// Namespaced: sibling sites on the same origin share localStorage.
+export const STORAGE_KEY = 'yawmatch:profile'
+/** Key used before namespacing; read once and removed on the next save. */
+export const LEGACY_STORAGE_KEY = 'sensfinder.profile.v1'
 const KEYS = ['from', 'to', 'sens', 'dpi'] as const
 
 /** Parses a user-typed positive number; accepts "," as decimal separator. */
@@ -51,7 +54,7 @@ export function toQuery(s: Settings): string {
 /** Reads the saved profile. Storage may be missing or throw (private mode, blocked). */
 export function loadProfile(storage: Pick<Storage, 'getItem'> | undefined): Partial<Settings> {
   try {
-    const raw = storage?.getItem(STORAGE_KEY)
+    const raw = storage?.getItem(STORAGE_KEY) ?? storage?.getItem(LEGACY_STORAGE_KEY)
     if (!raw) return {}
     const parsed: unknown = JSON.parse(raw)
     if (typeof parsed !== 'object' || parsed === null) return {}
@@ -62,9 +65,13 @@ export function loadProfile(storage: Pick<Storage, 'getItem'> | undefined): Part
   }
 }
 
-export function saveProfile(storage: Pick<Storage, 'setItem'> | undefined, s: Settings): void {
+export function saveProfile(
+  storage: (Pick<Storage, 'setItem'> & Partial<Pick<Storage, 'removeItem'>>) | undefined,
+  s: Settings,
+): void {
   try {
     storage?.setItem(STORAGE_KEY, JSON.stringify(s))
+    storage?.removeItem?.(LEGACY_STORAGE_KEY)
   } catch {
     // Storage full or blocked: the profile just isn't remembered.
   }
