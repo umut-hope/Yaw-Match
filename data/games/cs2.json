@@ -1,0 +1,12 @@
+{
+  "id": "cs2",
+  "name": "Counter-Strike 2",
+  "yaw": 0.022,
+  "sensCurve": "linear",
+  "fov": { "default": 90, "type": "horizontal-4:3", "adjustable": false },
+  "ads": null,
+  "configFiles": ["cs2_user_convars_0_slot0.vcfg"],
+  "consoleCommand": "sensitivity {sens}",
+  "sources": [],
+  "verifiedBy": "unverified"
+}
