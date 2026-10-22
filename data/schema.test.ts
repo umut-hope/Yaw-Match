@@ -85,6 +85,11 @@ describe('Game schema', () => {
     expect(Game.safeParse({ ...valid, sources: [{ url: 'not a url' }] }).success).toBe(false)
   })
 
+  it('allows an unresearched FOV and optional notes', () => {
+    expect(Game.safeParse({ ...valid, fov: null, notes: 'Sources disagree.' }).success).toBe(true)
+    expect(Game.safeParse({ ...valid, notes: '' }).success).toBe(false)
+  })
+
   it('validates ADS multiplier', () => {
     expect(Game.safeParse({ ...valid, ads: { multiplier: 1 } }).success).toBe(true)
     expect(Game.safeParse({ ...valid, ads: { multiplier: 0 } }).success).toBe(false)

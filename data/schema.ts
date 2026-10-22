@@ -42,7 +42,8 @@ export const Game = z
     name: z.string().min(1),
     yaw: z.number().positive().finite(),
     sensCurve: SensCurve,
-    fov: Fov,
+    /** null until the game's FOV has been researched; never guessed. */
+    fov: Fov.nullable(),
     ads: Ads.nullable(),
     configFiles: z.array(z.string().min(1)),
     consoleCommand: z
@@ -51,6 +52,8 @@ export const Game = z
       .nullable(),
     sources: z.array(Source),
     verifiedBy: VerifiedBy,
+    /** Caveats shown to players: conflicting sources, slider quirks, config multipliers. */
+    notes: z.string().min(1).optional(),
   })
   .strict()
   .refine((g) => g.verifiedBy === 'unverified' || g.sources.length > 0, {
