@@ -7,7 +7,7 @@ import {
   degreesPerCount,
   edpi,
   inchesPer360,
-  sensForCmPer360,
+  sensFromCm360,
 } from './convert'
 
 // Yaw values here are arbitrary test inputs, not claims about any game.
@@ -124,23 +124,33 @@ describe('convert360', () => {
   })
 })
 
-describe('sensForCmPer360', () => {
+describe('sensFromCm360', () => {
   it('is the inverse of cmPer360', () => {
     for (const dpi of [400, 800, 1600]) {
       for (const sens of [0.3, 1, 2.5]) {
         const cm = cmPer360(sens, YAW_A, dpi)
-        expect(sensForCmPer360(cm, YAW_A, dpi)).toBeCloseTo(sens, 12)
+        expect(sensFromCm360(cm, dpi, YAW_A)).toBeCloseTo(sens, 12)
       }
     }
   })
 
   it('computes the reference case', () => {
-    expect(sensForCmPer360(51.954545454545, YAW_A, 800)).toBeCloseTo(1, 9)
+    expect(sensFromCm360(51.954545454545, 800, YAW_A)).toBeCloseTo(1, 9)
+  })
+
+  it('halves sens when the target cm/360 doubles', () => {
+    expect(sensFromCm360(80, 800, YAW_A)).toBeCloseTo(sensFromCm360(40, 800, YAW_A) / 2, 12)
+  })
+
+  it('gives the same physical speed in every game', () => {
+    const sA = sensFromCm360(35, 1600, YAW_A)
+    const sB = sensFromCm360(35, 1600, YAW_B)
+    expect(convert360(sA, YAW_A, YAW_B)).toBeCloseTo(sB, 12)
   })
 
   it.each(invalid)('rejects invalid input %s', (v) => {
-    expect(() => sensForCmPer360(v, YAW_A, 800)).toThrow(RangeError)
-    expect(() => sensForCmPer360(40, v, 800)).toThrow(RangeError)
-    expect(() => sensForCmPer360(40, YAW_A, v)).toThrow(RangeError)
+    expect(() => sensFromCm360(v, 800, YAW_A)).toThrow(RangeError)
+    expect(() => sensFromCm360(40, v, YAW_A)).toThrow(RangeError)
+    expect(() => sensFromCm360(40, 800, v)).toThrow(RangeError)
   })
 })

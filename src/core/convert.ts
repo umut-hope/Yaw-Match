@@ -9,7 +9,7 @@
 export const CM_PER_INCH = 2.54
 export const DEGREES_PER_TURN = 360
 
-function assertPositive(name: string, value: number): void {
+export function assertPositive(name: string, value: number): void {
   if (!Number.isFinite(value) || value <= 0) {
     throw new RangeError(`${name} must be a finite number greater than 0, got ${value}`)
   }
@@ -58,10 +58,10 @@ export function convert360(sens: number, fromYaw: number, toYaw: number): number
   return (sens * fromYaw) / toYaw
 }
 
-/** Inverse of `cmPer360`: the sensitivity that produces the given cm/360. */
-export function sensForCmPer360(cm: number, yaw: number, dpi: number): number {
-  assertPositive('cm', cm)
-  assertPositive('yaw', yaw)
+/** Inverse of `cmPer360`: the in-game sensitivity that produces the given cm/360. */
+export function sensFromCm360(cm360: number, dpi: number, yaw: number): number {
+  assertPositive('cm360', cm360)
   assertPositive('dpi', dpi)
-  return (DEGREES_PER_TURN * CM_PER_INCH) / (cm * dpi * yaw)
+  assertPositive('yaw', yaw)
+  return (DEGREES_PER_TURN * CM_PER_INCH) / (cm360 * dpi * yaw)
 }
