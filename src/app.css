@@ -1,0 +1,370 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef0f4;
+  --border: #d9dde4;
+  --fg: #15181d;
+  --muted: #5d6573;
+  --accent: #2f6fde;
+  --accent-fg: #ffffff;
+  --error: #c4322b;
+  --warn-bg: #fff4d6;
+  --warn-fg: #6b4e00;
+  --radius: 12px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0f1115;
+    --surface: #171a20;
+    --surface-2: #20242c;
+    --border: #2d323c;
+    --fg: #e8eaee;
+    --muted: #98a1b0;
+    --accent: #5b93f5;
+    --accent-fg: #0b0d10;
+    --error: #ff7a70;
+    --warn-bg: #2f2710;
+    --warn-fg: #f2d27a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0f1115;
+  --surface: #171a20;
+  --surface-2: #20242c;
+  --border: #2d323c;
+  --fg: #e8eaee;
+  --muted: #98a1b0;
+  --accent: #5b93f5;
+  --accent-fg: #0b0d10;
+  --error: #ff7a70;
+  --warn-bg: #2f2710;
+  --warn-fg: #f2d27a;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#app {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+h1,
+h2 {
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+h2 {
+  font-size: 1.15rem;
+}
+
+code {
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 0.9rem;
+}
+
+/* Header */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+.logo {
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.intro {
+  margin: 0.5rem 0 1.25rem;
+}
+.intro p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* Form */
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.wide {
+  grid-column: 1 / -1;
+}
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+select,
+input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  font: inherit;
+  color: var(--fg);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+select:focus,
+input:focus,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+input[aria-invalid='true'] {
+  border-color: var(--error);
+}
+.to-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.grow {
+  flex: 1;
+}
+.swap {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.2rem;
+  color: var(--fg);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.swap:hover {
+  border-color: var(--accent);
+}
+.error {
+  margin: 0;
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+/* Result */
+.result .label {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+.result .big {
+  margin: 0.1rem 0 0.75rem;
+  font-size: clamp(2.5rem, 10vw, 3.5rem);
+  font-weight: 750;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.line code {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.6rem;
+  background: var(--surface-2);
+  border-radius: 6px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+}
+.stats div {
+  padding: 0.6rem 0.75rem;
+  background: var(--surface-2);
+  border-radius: 8px;
+}
+.stats dt {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.stats dd {
+  margin: 0;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.note {
+  margin: 1rem 0 0;
+  padding: 0.6rem 0.75rem;
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.share {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+/* All games table */
+.games {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+.games th,
+.games td {
+  padding: 0.6rem 0.5rem;
+  text-align: left;
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+.games thead th {
+  border-top: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.games tbody th {
+  font-weight: 600;
+}
+.games .num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.games .cfg {
+  width: 45%;
+}
+.games tr.current {
+  background: var(--surface-2);
+}
+.trust {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  vertical-align: middle;
+}
+.trust-official,
+.trust-measurement {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.trust-unverified {
+  color: var(--warn-fg);
+  background: var(--warn-bg);
+  border-color: transparent;
+}
+
+footer {
+  padding: 1.5rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Phone width: stack the form and turn table rows into cards */
+@media (max-width: 600px) {
+  .card {
+    padding: 1rem;
+  }
+  .form {
+    gap: 0.75rem;
+  }
+  .games thead {
+    display: none;
+  }
+  .games,
+  .games tbody,
+  .games tr,
+  .games th,
+  .games td {
+    display: block;
+    width: 100%;
+  }
+  .games tr {
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .games tr.current {
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+  }
+  .games th,
+  .games td {
+    border: 0;
+    padding: 0.15rem 0;
+  }
+  .games td.num {
+    display: inline-block;
+    width: auto;
+    margin-right: 1rem;
+  }
+  .games td.num::before {
+    content: attr(data-label) ': ';
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .games .cfg {
+    width: 100%;
+    margin-top: 0.35rem;
+  }
+}
