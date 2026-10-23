@@ -42,7 +42,9 @@ sens_B = sens_A × yaw_A / yaw_B
 ## Game data and trust levels
 
 Each game lives in [`data/games/`](data/games) as one JSON file, validated by a
-[Zod schema](data/schema.ts) in CI. Every yaw value has a source or is marked unverified:
+[Zod schema](data/schema.ts) in CI. The build also publishes the full list as one JSON array at
+`https://umut-hope.github.io/Yaw-Match/data/games.json` for other tools to fetch.
+Every yaw value has a source or is marked unverified:
 
 | Label | Meaning |
 |---|---|
