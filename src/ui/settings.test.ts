@@ -5,9 +5,11 @@ import {
   formatNumber,
   fromQuery,
   loadProfile,
+  loadSharedProfile,
   parsePositive,
   resolveSettings,
   saveProfile,
+  saveSharedProfile,
   toQuery,
   type Settings,
 } from './settings'
@@ -137,5 +139,49 @@ describe('resolveSettings', () => {
     const result = resolveSettings([{ from: 'nope' }, { from: 'overwatch-2' }], defaults, known)
     expect(result.from).toBe('overwatch-2')
     expect(resolveSettings([{ to: 'nope' }], defaults, known).to).toBe('valorant')
+  })
+})
+
+describe('shared profile', () => {
+  const memory = () => {
+    const data = new Map<string, string>()
+    return {
+      data,
+      getItem: (k: string) => data.get(k) ?? null,
+      setItem: (k: string, v: string) => void data.set(k, v),
+    }
+  }
+
+  it('writes the source game, sens and dpi as numbers', () => {
+    const storage = memory()
+    saveSharedProfile(storage, { ...defaults, sens: '1,25', dpi: '400' }, known)
+    expect(JSON.parse(storage.data.get('shared:profile')!)).toEqual({ dpi: 400, mainGame: 'cs2', sens: 1.25 })
+  })
+
+  it('skips incomplete input and unknown games', () => {
+    const storage = memory()
+    saveSharedProfile(storage, { ...defaults, sens: '' }, known)
+    saveSharedProfile(storage, { ...defaults, from: 'nope' }, known)
+    expect(storage.data.has('shared:profile')).toBe(false)
+  })
+
+  it('reads it back as converter settings', () => {
+    const storage = memory()
+    storage.setItem('shared:profile', JSON.stringify({ dpi: 1600, mainGame: 'valorant', sens: 0.35 }))
+    expect(loadSharedProfile(storage)).toEqual({ from: 'valorant', sens: '0.35', dpi: '1600' })
+  })
+
+  it('ignores corrupt or missing data', () => {
+    const storage = memory()
+    storage.setItem('shared:profile', '{oops')
+    expect(loadSharedProfile(storage)).toEqual({})
+    expect(loadSharedProfile(undefined)).toEqual({})
+  })
+
+  it('wins over our own profile but not over the URL', () => {
+    const shared = { from: 'valorant', sens: '0.35', dpi: '1600' }
+    const own = { from: 'cs2', to: 'overwatch-2', sens: '2', dpi: '400' }
+    expect(resolveSettings([{}, shared, own], defaults, known)).toEqual({ ...shared, to: 'overwatch-2' })
+    expect(resolveSettings([{ sens: '9' }, shared, own], defaults, known).sens).toBe('9')
   })
 })

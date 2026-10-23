@@ -9,9 +9,11 @@
     fromQuery,
     getStorage,
     loadProfile,
+    loadSharedProfile,
     parsePositive,
     resolveSettings,
     saveProfile,
+    saveSharedProfile,
     toQuery,
     type Settings,
   } from './settings'
@@ -27,8 +29,15 @@
     dpi: '800',
   }
 
+  const isKnownGame = (id: string) => !!findGame(id)
+
+  // URL first, then the profile shared with aimtune (it may be newer), then our own.
   let settings = $state<Settings>(
-    resolveSettings([fromQuery(location.search), loadProfile(storage)], defaults, (id) => !!findGame(id)),
+    resolveSettings(
+      [fromQuery(location.search), loadSharedProfile(storage), loadProfile(storage)],
+      defaults,
+      isKnownGame,
+    ),
   )
 
   const source = $derived(findGame(settings.from) ?? firstGame)
@@ -52,6 +61,9 @@
   )
 
   let shareUrl = $state('')
+  // The first run only reflects what was loaded; sharing it would overwrite a
+  // sibling site's profile with defaults on a first visit.
+  let firstRun = true
 
   $effect(() => {
     const snapshot = { ...settings }
@@ -62,6 +74,8 @@
     }
     shareUrl = location.href
     saveProfile(storage, snapshot)
+    if (!firstRun) saveSharedProfile(storage, snapshot, isKnownGame)
+    firstRun = false
   })
 </script>
 

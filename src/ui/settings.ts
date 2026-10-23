@@ -1,3 +1,5 @@
+import { SHARED_PROFILE_KEY, parseSharedProfile, serializeSharedProfile } from '../core/shared-profile'
+
 /** User input as typed. Kept as strings so half-typed values like "1." survive. */
 export interface Settings {
   from: string
@@ -74,6 +76,41 @@ export function saveProfile(
     storage?.removeItem?.(LEGACY_STORAGE_KEY)
   } catch {
     // Storage full or blocked: the profile just isn't remembered.
+  }
+}
+
+/**
+ * Reads the profile shared with sibling sites (`shared:profile`), mapped to
+ * converter settings: the main game becomes the source game.
+ */
+export function loadSharedProfile(storage: Pick<Storage, 'getItem'> | undefined): Partial<Settings> {
+  try {
+    const profile = parseSharedProfile(storage?.getItem(SHARED_PROFILE_KEY))
+    if (!profile) return {}
+    return { from: profile.mainGame, sens: formatNumber(profile.sens), dpi: formatNumber(profile.dpi, 0) }
+  } catch {
+    return {}
+  }
+}
+
+/**
+ * Writes the source game, sens and DPI to the shared profile so sibling sites
+ * can prefill them. Skipped while the input is incomplete or the game unknown.
+ */
+export function saveSharedProfile(
+  storage: Pick<Storage, 'setItem'> | undefined,
+  s: Settings,
+  isKnownGame: (id: string) => boolean,
+): void {
+  const sens = parsePositive(s.sens)
+  const dpi = parsePositive(s.dpi)
+  if (sens === null || dpi === null || !isKnownGame(s.from)) return
+  const value = serializeSharedProfile({ dpi, mainGame: s.from, sens })
+  if (value === null) return
+  try {
+    storage?.setItem(SHARED_PROFILE_KEY, value)
+  } catch {
+    // Storage full or blocked: the profile just isn't shared.
   }
 }
 
