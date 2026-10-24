@@ -1,5 +1,7 @@
 # Yaw-Match
 
+![Yaw-Match converting a CS2 sensitivity to other games](docs/screenshot.webp)
+
 Convert mouse sensitivity between games and keep the same physical feel.
 
 **Live site:** https://umut-hope.github.io/Yaw-Match/
