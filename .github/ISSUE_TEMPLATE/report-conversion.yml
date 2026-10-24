@@ -1,0 +1,56 @@
+name: A conversion looks wrong
+description: The sensitivity yawmatch gave you does not feel the same in game.
+title: "[conversion] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! The quickest way to help is to paste the share link
+        (the "Copy link" button), so the exact numbers can be checked.
+
+  - type: input
+    id: link
+    attributes:
+      label: Share link
+      placeholder: https://umut-hope.github.io/Yaw-Match/?from=cs2&sens=1.2&dpi=800
+
+  - type: input
+    id: from
+    attributes:
+      label: From game, sensitivity and DPI
+      placeholder: e.g. CS2, 1.2, 800 DPI
+    validations:
+      required: true
+
+  - type: input
+    id: to
+    attributes:
+      label: To game
+      placeholder: e.g. Valorant
+    validations:
+      required: true
+
+  - type: input
+    id: got
+    attributes:
+      label: Sensitivity yawmatch gave you
+      placeholder: e.g. 0.381
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect, and why?
+      description: |
+        For example: "One 360° turn is 43 cm in CS2 but about 50 cm in Valorant",
+        or a value from the game's own docs or another converter.
+    validations:
+      required: true
+
+  - type: textarea
+    id: settings
+    attributes:
+      label: In-game settings that might matter (optional)
+      description: FOV, scoped or ADS sensitivity, mouse acceleration, raw input, aspect ratio.
