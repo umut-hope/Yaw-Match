@@ -8,7 +8,8 @@ Convert mouse sensitivity between games and keep the same physical feel.
 
 Enter your sensitivity, DPI and game. Yaw-Match shows the matching sensitivity in every
 supported game, your cm/360 and eDPI, and a console/config line you can copy. Everything
-runs in your browser: no accounts, no tracking, no backend.
+runs in your browser: no accounts, no cookies, no backend. Anonymous page views are counted
+with [GoatCounter](https://www.goatcounter.com/); your settings are never sent.
 
 ## Features
 
